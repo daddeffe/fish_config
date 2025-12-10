@@ -1,4 +1,6 @@
 abbr -a -- cd z
+abbr -a -- opc opencode
+abbr -a -- opcc opencode -c
 abbr -a -- cl clear
 abbr -a -- g git
 abbr -a -- l ezals
@@ -10,4 +12,3 @@ abbr -a -- kcc kubectl ctx
 abbr -a -- zj zellij
 abbr -a -- sysc systemctl
 abbr -a -- syscu systemctl --user
-
