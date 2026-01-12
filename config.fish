@@ -35,8 +35,10 @@ if status is-interactive
     set -q KREW_ROOT; and set -gx PATH $PATH $KREW_ROOT/.krew/bin; or set -gx PATH $PATH $HOME/.krew/bin
 
     set -U autovenv_enable yes
-    set -U autovenv_announce no
+    set -U autovenv_announce yes
     set -U autovenv_dir .venv
+
+    git-refresh
     # Check max tmux window in the Home session and open the Home session in a new tmux window
     # Find max window number in the Home session
     #if test -z "$TMUX";
@@ -57,3 +59,7 @@ fish_add_path /home/df/.opencode/bin
 # Added by LM Studio CLI (lms)
 set -gx PATH $PATH /home/df/.lmstudio/bin
 # End of LM Studio CLI section
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
