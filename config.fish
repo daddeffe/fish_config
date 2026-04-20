@@ -9,8 +9,6 @@ set -g TERM xterm-256color
 #set -gx NVIM_LISTEN_ADDRESS /tmp/nvim-server.sock
 
 # Set correct TERM and TERMINAL for kitty
-set -gx TERM xterm-kitty
-set -gx TERMINAL kitty
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
@@ -31,7 +29,13 @@ if status is-interactive
 
     set -g fish_sequence_key_delay_ms 200
     bind -M insert -m default j,k cancel repaint-mode
-    bind -M insert \cn \\t
+
+    # \c Ctrl, \e Alt
+    bind -M insert \cy 'y; commandline -f repaint'
+    bind -M insert \cv 'nvim; commandline -f repaint'
+    bind -M insert \cz 'zellij; commandline -f repaint'
+    bind -M insert \cx 'set -l dir (zoxide query -l | fzf --height 40% --reverse); and cd $dir; commandline -f repaint'
+    bind -M insert \cu forward-char
     set -q KREW_ROOT; and set -gx PATH $PATH $KREW_ROOT/.krew/bin; or set -gx PATH $PATH $HOME/.krew/bin
 
     set -U autovenv_enable yes
@@ -63,3 +67,11 @@ set -gx PATH $PATH /home/df/.lmstudio/bin
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+
+# Go
+fish_add_path $HOME/go/bin
+
+# Cargo (Rust)
+fish_add_path $HOME/.cargo/bin
+
+alias claude 'claude --allow-dangerously-skip-permissions'

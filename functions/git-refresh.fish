@@ -5,8 +5,8 @@
 # * $path          package path
 # * $dependencies  package dependencies
 
-# Timeout in seconds before allowing another git pull (default: 15 minutes)
-set -q GIT_REFRESH_TIMEOUT; or set -g GIT_REFRESH_TIMEOUT 900
+# Timeout in seconds before allowing another git pull (default: 60 minutes)
+set -q GIT_REFRESH_TIMEOUT; or set -g GIT_REFRESH_TIMEOUT 3600
 
 function git-refresh --on-variable PWD \
     --description "git pull automatically wherever inside a git repository"
